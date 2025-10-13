@@ -116,6 +116,48 @@
       .intro h2 { font-size: 28px; }
       .intro p { font-size: 18px; }
       .section-title { font-size: 24px; }
+    }    /* ABOUT / WOW SPLASH */
+    .about-hero { background: #fff; }
+    .about-hero .container { display: grid; gap: 28px; align-items: center; }
+    .about-hero .text {
+      max-width: 620px;
+    }
+    .about-hero h2 { font-family: 'League Spartan', sans-serif; font-weight: 700; font-size: clamp(28px, 4vw, 44px); line-height: 1.05; margin: 0 0 10px; }
+    .about-hero p.lead { font-family: 'Lato', sans-serif; font-weight: 500; font-size: clamp(18px, 2.5vw, 22px); line-height: 1.35; margin: 0 0 14px; }
+
+    .about-hero .image-wrap { position: relative; width: min(560px, 100%); justify-self: end; }
+    .about-hero .image {
+      position: relative; z-index: 3; width: 100%; height: auto; display: block; border-radius: 24px; box-shadow: 0 18px 50px rgba(0,0,0,.15);
+    }
+    /* Splash blobs */
+    .blob { position: absolute; border-radius: 999px; filter: blur(0); opacity: .95; }
+    .blob.yellow { background: var(--yellow); }
+    .blob.orange { background: var(--orange); }
+    .blob.green { background: var(--green); }
+    .image-wrap .blob.yellow { width: 70%; height: 55%; left: -8%; top: 12%; transform: rotate(-6deg); z-index: 1; box-shadow: 0 20px 60px rgba(0,0,0,.12); }
+    .image-wrap .blob.orange { width: 48%; height: 42%; right: -10%; top: -6%; transform: rotate(12deg); z-index: 0; box-shadow: 0 12px 40px rgba(0,0,0,.10); }
+    .image-wrap .blob.green { width: 36%; height: 36%; right: -6%; bottom: -8%; transform: rotate(-8deg); z-index: 2; box-shadow: 0 12px 40px rgba(0,0,0,.12); }
+
+    /* Steps visual section */
+    .steps-visual { background: #fff; }
+    .steps-visual .section-title { margin-top: 0; }
+    .steps-grid { display: grid; gap: 18px; }
+    .step-card { position: relative; background: #fff; border-radius: 22px; padding: 18px 16px 18px 72px; box-shadow: 0 8px 24px rgba(0,0,0,.08); }
+    .step-icon { position: absolute; left: 16px; top: 16px; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; font-size: 22px; color: #000; }
+    .step-icon.y { background: var(--yellow); }
+    .step-icon.o { background: var(--orange); }
+    .step-icon.g { background: var(--green); color: #fff; }
+    .step-card h4 { margin: 0 0 6px; font-family: 'League Spartan', sans-serif; font-weight: 600; font-size: 20px; }
+    .step-card p { margin: 0; font-family: 'Lato', sans-serif; font-weight: 400; font-size: 16px; line-height: 1.35; }
+
+    /* Connectors for desktop */
+    @media (min-width: 900px) {
+      .about-hero .container { grid-template-columns: 1.1fr 0.9fr; }
+      .steps-grid { grid-template-columns: repeat(4, 1fr); align-items: start; }
+      .steps-grid { counter-reset: step; }
+      .step-card::after { content: ""; position: absolute; right: -9px; top: 50%; transform: translateY(-50%); width: 18px; height: 2px; background: rgba(0,0,0,.12); }
+      .steps-grid > :last-child::after { display: none; }
+    }
     }
   </style>
 </head>
@@ -210,8 +252,63 @@
       });
     })();
   </script>
+
+    <!-- ABOUT HERO (image right, splash vibe) -->
+  <section class="about-hero section-white">
+    <div class="container">
+      <div class="text">
+        <h2>Om oss</h2>
+        <p class="lead">Vi är Upp ditt frisör, ett systerbolag till Omnily, en marknadsföringsbyrå i Södermalm, Stockholm.</p>
+        <p class="lead">Omnily har hjälpt många företag att växa online. Nu använder vi samma kunskap – men på lätt svenska och med fokus på frisörsalonger.</p>
+        <p class="lead">Vi pratar enkelt, hjälper dig steg för steg och ser till att du förstår allt. Vi tror att alla företagare, oavsett språk, ska kunna synas på Google.</p>
+      </div>
+
+      <div class="image-wrap" aria-label="Omnily – systerbolaget">
+        <div class="blob yellow" aria-hidden="true"></div>
+        <div class="blob orange" aria-hidden="true"></div>
+        <img class="image" src="omnily.png" alt="Team från Omnily" />
+        <div class="blob green" aria-hidden="true"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEPS VISUAL (below about) -->
+  <section class="steps-visual section-white">
+    <div class="container">
+      <h3 class="section-title">Hur det fungerar</h3>
+      <div class="steps-grid">
+        <article class="step-card">
+          <div class="step-icon y" aria-hidden="true">🔎</div>
+          <h4>Vi tittar på din salong online</h4>
+          <p>Vi kollar hur din Google-profil ser ut idag.</p>
+        </article>
+        <article class="step-card">
+          <div class="step-icon o" aria-hidden="true">🧭</div>
+          <h4>Vi gör en plan</h4>
+          <p>Du får en enkel plan för hur din salong kan synas högre på Google Maps.</p>
+        </article>
+        <article class="step-card">
+          <div class="step-icon y" aria-hidden="true">🛠️</div>
+          <h4>Vi gör jobbet åt dig</h4>
+          <p>Vi hjälper dig med text, bilder och kundomdömen – så du slipper tänka på det.</p>
+        </article>
+        <article class="step-card">
+          <div class="step-icon g" aria-hidden="true">📈</div>
+          <h4>Du ser resultaten</h4>
+          <p>Din salong börjar synas mer — och får fler kunder!</p>
+        </article>
+      </div>
+    </div>
+  </section>  
 </body>
 </html>
+
+  
+
+  
+
+
+
 
 
 

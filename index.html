@@ -11,6 +11,9 @@
       --text: #000000;
       --bg: #ffffff;
       --ring: rgba(0,0,0,.08);
+      --orange: #FFBF7E;
+      --yellow: #FFE45C;
+      --green: #719941;
     }
 
     * { box-sizing: border-box; }
@@ -40,105 +43,79 @@
       gap: 12px;
     }
 
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      color: inherit;
-    }
+    .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; }
+    .brand img { height: 40px; width: auto; display: block; }
 
-    .brand img {
-      height: 40px;
-      width: auto;
-      display: block;
-    }
-
-    .actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
+    .actions { display: flex; align-items: center; gap: 12px; }
 
     .btn, .menu-btn {
-      appearance: none;
-      border: none;
-      border-radius: 999px;
-      padding: 10px 16px;
-      font-size: 15px;
-      line-height: 1;
-      cursor: pointer;
+      appearance: none; border: none; border-radius: 999px; padding: 10px 16px; font-size: 15px; line-height: 1; cursor: pointer;
       transition: transform .04s ease, box-shadow .2s ease, background .2s ease, opacity .2s ease;
-      box-shadow: 0 1px 2px rgba(0,0,0,.05);
-      color: #111;
-      background: #fff;
+      box-shadow: 0 1px 2px rgba(0,0,0,.05); color: #111; background: #fff;
     }
-
     .btn:hover, .menu-btn:hover { transform: translateY(-1px); }
-    .btn:active, .menu-btn:active { transform: translateY(0); }
-
-    .btn.primary {
-      background: #111;
-      color: #fff;
-    }
+    .btn.primary { background: #111; color: #fff; }
 
     .menu { position: relative; }
     .menu-btn { display: inline-flex; align-items: center; gap: 8px; }
     .menu-btn svg { width: 18px; height: 18px; }
 
     .menu-dropdown {
-      position: absolute;
-      right: 0;
-      top: calc(100% + 10px);
-      min-width: 220px;
-      background: #fff;
-      border-radius: 14px;
-      padding: 6px;
-      box-shadow: 0 10px 30px rgba(0,0,0,.12), 0 2px 8px rgba(0,0,0,.06);
-      display: none;
+      position: absolute; right: 0; top: calc(100% + 10px); min-width: 220px; background: #fff; border-radius: 14px; padding: 6px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.12), 0 2px 8px rgba(0,0,0,.06); display: none;
     }
-
     .menu[aria-expanded="true"] .menu-dropdown { display: block; }
-
-    .menu-item a {
-      display: block;
-      padding: 10px 12px;
-      border-radius: 10px;
-      text-decoration: none;
-      color: #111;
-    }
+    .menu-item a { display: block; padding: 10px 12px; border-radius: 10px; text-decoration: none; color: #111; }
     .menu-item a:hover { background: rgba(0,0,0,.05); }
 
-    .hero {
-      position: relative;
-      background: var(--brand);
-      text-align: center;
-      padding: 120px 16px 120px; /* Added more bottom padding */
+    /* HERO */
+    .hero { position: relative; background: var(--brand); text-align: center; padding: 120px 16px 120px; }
+    .hero h1 { font-family: 'League Spartan', sans-serif; font-weight: 600; font-size: 40px; line-height: 0.92; color: #000; max-width: 408px; margin: 0 auto 20px; }
+    .hero p { font-family: 'Lato', sans-serif; font-weight: 500; font-size: 25px; line-height: 1.26; color: #000; max-width: 395px; margin: 0 auto; }
+
+    /* SECTION: WHITE */
+    .section-white { background: #fff; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 56px 16px; }
+
+    .intro {
+      display: grid; justify-items: center; text-align: center; gap: 20px; margin-bottom: 40px;
+    }
+    .intro h2 { font-family: 'League Spartan', sans-serif; font-weight: 400; font-size: 35px; line-height: 1.19; color: #000; max-width: 383px; margin: 0 auto; }
+    .intro p { font-family: 'Lato', sans-serif; font-weight: 500; font-size: 22px; line-height: 1.26; color: #000; max-width: 403px; margin: 0 auto; }
+    .intro img { width: min(480px, 90%); height: auto; border-radius: 22px; box-shadow: 0 10px 30px rgba(0,0,0,.08); }
+
+    .pill { display: inline-flex; align-items: center; justify-content: center; padding: 6px 12px; border-radius: 999px; border: 1px solid #000; }
+    .pill span { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 12px; line-height: 1.11; color: #000; }
+
+    .section-title { text-align: center; font-family: 'League Spartan', sans-serif; font-weight: 600; font-size: 30px; line-height: 1.11; color: #000; margin: 14px auto 28px; max-width: 405px; }
+
+    .cards { display: grid; gap: 18px; }
+    .card { border-radius: 30px; padding: 24px; }
+    .card h3 { font-family: 'League Spartan', sans-serif; font-weight: 500; font-size: 25px; line-height: 1.28; margin: 0 0 10px; }
+    .card p { font-family: 'Poppins', sans-serif; font-weight: 500; font-size: 16px; line-height: 1.31; letter-spacing: .03em; margin: 0; }
+
+    .card.orange { background: var(--orange); }
+    .card.yellow { background: var(--yellow); }
+    .card.green { background: var(--green); }
+
+    .card.green h3, .card.green p { color: #fff; }
+
+    /* Responsive: 3-up on larger screens */
+    @media (min-width: 900px) {
+      .intro { grid-template-columns: 1fr 1fr; text-align: left; justify-items: start; align-items: center; }
+      .intro h2, .intro p { margin-left: 0; margin-right: 0; }
+      .intro > div.text { order: 1; }
+      .intro > img { order: 2; justify-self: end; }
+      .cards { grid-template-columns: repeat(3, 1fr); }
     }
 
-    .hero h1 {
-      font-family: 'League Spartan', sans-serif;
-      font-weight: 600;
-      font-size: 40px;
-      line-height: 0.92;
-      color: #000000;
-      max-width: 408px;
-      margin: 0 auto 20px;
-    }
-
-    .hero p {
-      font-family: 'Lato', sans-serif;
-      font-weight: 400;
-      font-size: 25px;
-      line-height: 1.23;
-      color: #000000;
-      max-width: 395px;
-      margin: 0 auto;
-    }
-
+    /* Mobile font tweaks */
     @media (max-width: 640px) {
       .hero h1 { font-size: 28px; }
       .hero p { font-size: 18px; }
+      .intro h2 { font-size: 28px; }
+      .intro p { font-size: 18px; }
+      .section-title { font-size: 24px; }
     }
   </style>
 </head>
@@ -175,6 +152,40 @@
     <div style="width:100%;height:500px;" data-fillout-id="98r4TeWxeXus" data-fillout-embed-type="standard" data-fillout-inherit-parameters data-fillout-dynamic-resize></div><script src="https://server.fillout.com/embed/v1/"></script>
   </section>
 
+    <!-- NEW WHITE SECTION -->
+  <section class="section-white">
+    <div class="container">
+      <div class="intro">
+        <div class="text">
+          <h2>Ett systerbolag till marknadsföringsbyrån Omnily</h2>
+          <p>Få din frisörsalong att rankas högre på Google Maps så får du fler bokningar, fler kunder och bättre resultat snabbare.</p>
+        </div>
+        <img src="PHONE.png" alt="Telefon som visar Google Maps" />
+      </div>
+
+      <div class="pill"><span>Vad du får</span></div>
+      <h3 class="section-title">Din frisörsalong högre upp på Google Maps</h3>
+
+      <div class="cards">
+        <!-- Card 1 -->
+        <article class="card orange">
+          <h3>Se dina framsteg, din ranking, fler bokningar.</h3>
+          <p>Hos oss informerar vi dig om dina framsteg för varje steg framåt.</p>
+        </article>
+        <!-- Card 2 -->
+        <article class="card yellow">
+          <h3>Vet när det är rätt tid att spendera lite mer eller spara dina pengar</h3>
+          <p>Lorem Ipsum is&nbsp;placeholder text used in design to demonstrate the visual form of a document</p>
+        </article>
+        <!-- Card 3 -->
+        <article class="card green">
+          <h3>Create Trips and Track Your Spending</h3>
+          <p>Lorem Ipsum is&nbsp;placeholder text used in design to demonstrate the visual form of a document</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <script>
     (function () {
       const menu = document.getElementById('menu');
@@ -201,3 +212,8 @@
   </script>
 </body>
 </html>
+
+
+
+
+

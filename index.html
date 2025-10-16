@@ -185,30 +185,49 @@
 </head>
 <body>
   <header class="header">
-    <nav class="nav" aria-label="Main">
-      <a href="#" class="brand">
-        <img src="Logo.png" alt="Brand logo" />
+  <nav class="nav" aria-label="Huvudmeny">
+    <!-- Logo only; links to homepage -->
+    <a href="https://alundsvagen.github.io/uppdittfrisor/" class="brand">
+      <img src="Logo.png" alt="Upp Ditt Frisör" />
+    </a>
+
+    <div class="actions">
+      <a class="btn primary"
+         href="https://form.fillout.com/t/3LfmYbpYw1us"
+         target="_blank" rel="noopener noreferrer">
+        Boka Möte
       </a>
 
-      <div class="actions">
-        <a class="btn primary" href="https://form.fillout.com/t/3LfmYbpYw1us" target="_blank" rel="noopener noreferrer">Boka Möte</a>
-        <div class="menu" id="menu" aria-haspopup="true" aria-expanded="false">
-          <button class="menu-btn" id="menuBtn" aria-controls="menuList" aria-label="Open menu">
-            Menu
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-          <div class="menu-dropdown" role="menu" id="menuList">
-            <div class="menu-item" role="none"><a role="menuitem" href="https://alundsvagen.github.io/uppdittfrisor/maps.html" target="_blank">Google Maps</a></div>
-            <div class="menu-item" role="none"><a role="menuitem" href="https://alundsvagen.github.io/uppdittfrisor/review.html" target="_blank">Reviews</a></div>
-            <div class="menu-item" role="none"><a role="menuitem" href="https://www.google.com" target="_blank">How it Works</a></div>
-            <div class="menu-item" role="none"><a role="menuitem" href="https://www.google.com" target="_blank">Why</a></div>
+      <div class="menu" id="menu" aria-haspopup="true" aria-expanded="false">
+        <button class="menu-btn" id="menuBtn" aria-controls="menuList" aria-label="Öppna meny">
+          Meny
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <div class="menu-dropdown" role="menu" id="menuList">
+          <div class="menu-item" role="none">
+            <a role="menuitem" href="/uppdittfrisor/maps.html">Google Maps</a>
+          </div>
+          <div class="menu-item" role="none">
+            <a role="menuitem" href="/uppdittfrisor/reviews.html">Omdömen</a>
+          </div>
+          <div class="menu-item" role="none">
+            <!-- If this page has a section id="hur", keep as #hur; otherwise link to a page -->
+            <a role="menuitem" href="#hur">Så funkar det</a>
+          </div>
+          <div class="menu-item" role="none">
+            <!-- If this page has a section id="why", keep as #why; otherwise link to a page -->
+            <a role="menuitem" href="#why">Varför</a>
           </div>
         </div>
       </div>
-    </nav>
-  </header>
+    </div>
+  </nav>
+</header>
+
 
   <section class="hero">
     <h1>Vi hjälper din salong att synas högt på Google Maps.</h1>
@@ -250,30 +269,35 @@
     </div>
   </section>
 
-  <script>
-    (function () {
-      const menu = document.getElementById('menu');
-      const btn = document.getElementById('menuBtn');
-      const list = document.getElementById('menuList');
+<script>
+  (function () {
+    const menu = document.getElementById('menu');
+    const btn  = document.getElementById('menuBtn');
+    const list = document.getElementById('menuList');
 
-      function openMenu() { menu.setAttribute('aria-expanded', 'true'); }
-      function closeMenu() { menu.setAttribute('aria-expanded', 'false'); }
-      function isOpen() { return menu.getAttribute('aria-expanded') === 'true'; }
+    function openMenu(){ menu.setAttribute('aria-expanded', 'true'); }
+    function closeMenu(){ menu.setAttribute('aria-expanded', 'false'); }
+    function isOpen(){ return menu.getAttribute('aria-expanded') === 'true'; }
 
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        isOpen() ? closeMenu() : openMenu();
-      });
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      isOpen() ? closeMenu() : openMenu();
+    });
 
-      document.addEventListener('click', (e) => {
-        if (!menu.contains(e.target)) closeMenu();
-      });
-
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeMenu();
-      });
-    })();
-  </script>
+    // Close when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!menu.contains(e.target)) closeMenu();
+    });
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
+    // NEW: close after choosing a menu item
+    list.addEventListener('click', (e) => {
+      if (e.target.closest('a')) closeMenu();
+    });
+  })();
+</script>
 
     <!-- ABOUT HERO (image right, splash vibe) -->
   <section class="about-hero section-white">

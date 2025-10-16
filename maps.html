@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Upp Ditt Frisör — SEO & Google Maps</title>
   <link rel="icon" type="image/png" href="mapsicon.png" />
-  <!-- Brand fonts -->
   <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700&family=Lato:wght@400;500;700&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
   <style>
     :root{
@@ -15,151 +14,218 @@
       --ring:rgba(0,0,0,.08);
       --orange:#FFBF7E;
       --yellow:#FFE45C;
-      --green:#719941; /* requested header background color */
-      --green-ink:#0d1a0b;
+      --green:#719941;
     }
 
     *{box-sizing:border-box}
     html,body{height:100%}
-    body{margin:0;color:var(--text);background:var(--bg);font-family:ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"}
-
-    /* Nav / Header (unchanged except tighter brand spacing + a11y focus) */
-    .header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: var(--brand);
-      box-shadow: 0 2px 12px var(--ring);
-    }
-    
-    .nav {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 12px 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-    
-    /* Logo link: no extra text, no gap needed */
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 0;                 /* tighter since it's only the logo */
-      text-decoration: none;
-      color: inherit;
-    }
-    
-    .brand img {
-      height: 40px;
-      width: auto;
-      display: block;
-    }
-    
-    /* Buttons / Menu (unchanged) */
-    .actions { display: flex; align-items: center; gap: 12px; }
-    .btn, .menu-btn {
-      appearance: none; border: none; border-radius: 999px; padding: 10px 16px;
-      font-size: 15px; line-height: 1; cursor: pointer;
-      transition: transform .04s ease, box-shadow .2s ease, background .2s ease, opacity .2s ease;
-      box-shadow: 0 1px 2px rgba(0,0,0,.05); color: #111; background: #fff;
-    }
-    .btn:hover, .menu-btn:hover { transform: translateY(-1px); }
-    .btn.primary { background: #111; color: #fff; }
-    
-    .menu { position: relative; }
-    .menu-btn { display: inline-flex; align-items: center; gap: 8px; }
-    .menu-btn svg { width: 18px; height: 18px; }
-    
-    .menu-dropdown {
-      position: absolute; right: 0; top: calc(100% + 10px); min-width: 220px;
-      background: #fff; border-radius: 14px; padding: 6px;
-      box-shadow: 0 10px 30px rgba(0,0,0,.12), 0 2px 8px rgba(0,0,0,.06); display: none;
-    }
-    .menu[aria-expanded="true"] .menu-dropdown { display: block; }
-    .menu-item a { display: block; padding: 10px 12px; border-radius: 10px; text-decoration: none; color: #111; }
-    .menu-item a:hover { background: rgba(0,0,0,.05); }
-    
-    /* Nice focus outlines for keyboard users */
-    .brand:focus-visible, .btn:focus-visible, .menu-btn:focus-visible, .menu-item a:focus-visible {
-      outline: 3px solid #111;
-      outline-offset: 2px;
+    body{
+      margin:0;color:var(--text);background:var(--bg);
+      font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
     }
 
-    /* SEO + Maps steps (visual cards) */
-    .steps .cards{display:grid;gap:16px}
-    .card{border-radius:20px;padding:20px;background:#fff;box-shadow:0 10px 30px rgba(0,0,0,.08)}
-    .card h3{font-family:'League Spartan',sans-serif;font-weight:600;font-size:22px;margin:0 0 6px}
-    .card p{font-family:'Lato',sans-serif;font-size:16px;line-height:1.35;margin:0}
-    .card .icon{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;margin-bottom:8px}
-    .icon.y{background:var(--yellow)}
-    .icon.o{background:var(--orange)}
-    .icon.g{background:var(--green);color:#fff}
-    @media(min-width:900px){.steps .cards{grid-template-columns:repeat(4,1fr)}}
+    /* ===== NAV / HEADER ===== */
+    .header{
+      position:sticky; top:0; z-index:100;
+      background:var(--brand);
+      box-shadow:0 2px 12px var(--ring);
+    }
+    .nav{
+      max-width:1100px; margin:0 auto; padding:12px 16px;
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+    }
+    .brand{
+      display:inline-flex; align-items:center; gap:0;
+      text-decoration:none; color:inherit;
+    }
+    .brand img{ height:40px; width:auto; display:block; }
 
-    /* Email capture (pre-booking) */
-    .cta{background:#f3f6ef}
-    .cta .panel{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:18px;padding:18px;box-shadow:0 10px 30px rgba(0,0,0,.08);display:grid;gap:12px}
-    .cta h3{font-family:'League Spartan',sans-serif;font-size:26px;margin:0}
-    .cta p{font-family:'Lato',sans-serif;margin:0}
-    .email-row{display:flex;gap:8px;flex-wrap:wrap}
-    .input{flex:1;min-width:220px;padding:12px 14px;border-radius:12px;border:1px solid rgba(0,0,0,.15);font-size:16px}
-    .submit{padding:12px 16px;border:none;border-radius:12px;background:#111;color:#fff;font-weight:700;cursor:pointer}
+    .actions{ display:flex; align-items:center; gap:12px; }
+    .btn,.menu-btn{
+      appearance:none; border:none; border-radius:999px; padding:10px 16px;
+      font-size:15px; line-height:1; cursor:pointer;
+      transition:transform .04s ease, box-shadow .2s ease, background .2s ease, opacity .2s ease;
+      box-shadow:0 1px 2px rgba(0,0,0,.05); color:#111; background:#fff;
+    }
+    .btn:hover,.menu-btn:hover{ transform:translateY(-1px); }
+    .btn.primary{ background:#111; color:#fff; }
 
-    /* Embed section (moved later) */
-    .embed .frame{width:100%;height:520px;border:0;border-radius:16px;box-shadow:0 12px 34px rgba(0,0,0,.12)}
+    .menu{ position:relative; }
+    .menu-btn{ display:inline-flex; align-items:center; gap:8px; }
+    .menu-btn svg{ width:18px; height:18px; }
+    .menu-dropdown{
+      position:absolute; right:0; top:calc(100% + 10px); min-width:220px;
+      background:#fff; border-radius:14px; padding:6px;
+      box-shadow:0 10px 30px rgba(0,0,0,.12), 0 2px 8px rgba(0,0,0,.06);
+      display:none;
+    }
+    .menu[aria-expanded="true"] .menu-dropdown{ display:block; }
+    .menu-item a{
+      display:block; padding:10px 12px; border-radius:10px; text-decoration:none; color:#111;
+    }
+    .menu-item a:hover{ background:rgba(0,0,0,.05); }
 
-    /* Footer quick */
-    .footer-note{padding:28px 16px;text-align:center;font-family:'Lato',sans-serif;font-size:14px;color:#444}
+    /* Better mobile handling: allow wrapping when space is tight */
+    @media (max-width: 520px){
+      .nav{ flex-wrap:wrap; row-gap:10px; }
+      .actions{ width:100%; justify-content:flex-end; }
+    }
+
+    /* Focus rings */
+    .brand:focus-visible, .btn:focus-visible, .menu-btn:focus-visible, .menu-item a:focus-visible{
+      outline:3px solid #111; outline-offset:2px;
+    }
+
+    /* ===== UTILITIES / LAYOUT ===== */
+    .container{ max-width:1100px; margin:0 auto; padding:56px 16px; }
+    .section{ background:#fff; }
+
+    /* ===== HERO (green background + image splash) ===== */
+    .hero{ background:var(--green); color:#fff; }
+    .hero-inner{
+      max-width:1100px; margin:0 auto; padding:72px 16px;
+      display:grid; gap:28px;
+    }
+    .kicker{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:6px 10px; border-radius:999px;
+      background:rgba(255,255,255,.15); backdrop-filter:blur(2px);
+      font-family:'Poppins',sans-serif; font-size:12px;
+    }
+    .hero h1{
+      font-family:'League Spartan',sans-serif; font-weight:700;
+      font-size:clamp(28px,5vw,48px); line-height:1.05; margin:8px 0 10px;
+    }
+    .hero .lead{
+      font-family:'Lato',sans-serif; font-weight:500;
+      font-size:clamp(16px,2.4vw,20px); line-height:1.45; margin:0;
+    }
+    .hero-cta{ display:flex; gap:10px; flex-wrap:wrap; margin-top:16px; }
+    .hero-cta .btn{ background:var(--yellow); }
+
+    .splash{ position:relative; width:min(540px,100%); justify-self:end; }
+    .splash img{
+      position:relative; z-index:2; width:100%; height:auto; display:block;
+      border-radius:24px; box-shadow:0 18px 50px rgba(0,0,0,.25);
+    }
+    .blob{ position:absolute; border-radius:999px; opacity:.85; }
+    .blob.y{ background:var(--yellow); width:64%; height:50%; left:-6%; top:10%; transform:rotate(-6deg); z-index:0; }
+    .blob.o{ background:var(--orange); width:46%; height:40%; right:-10%; top:-6%; transform:rotate(10deg); z-index:0; }
+
+    @media (min-width:900px){
+      .hero-inner{ grid-template-columns:1.05fr .95fr; align-items:center; }
+    }
+
+    /* ===== TRUST BAR ===== */
+    .trust{ background:#f8f9f6; }
+    .trust .container{
+      padding:18px 16px; text-align:center;
+      font-family:'Lato',sans-serif; font-size:14px; color:#2a2a2a;
+    }
+
+    /* ===== EXPLAINER (SEO + HOW IT WORKS) ===== */
+    .grid-2{ display:grid; gap:22px; }
+    @media (min-width:900px){ .grid-2{ grid-template-columns:1fr 1fr; align-items:start; } }
+    .section h2{
+      font-family:'League Spartan',sans-serif; font-weight:700;
+      font-size:clamp(24px,3.2vw,36px); margin:0 0 10px;
+    }
+    .sub{ font-family:'Lato',sans-serif; font-size:18px; color:#333; margin:0 0 24px; }
+
+    .list{ display:grid; gap:14px; margin:0; padding:0; list-style:none; }
+    .list li{
+      display:grid; grid-template-columns:auto 1fr; gap:12px; align-items:start;
+      background:#fff; border:1px solid rgba(0,0,0,.08); border-radius:14px;
+      padding:12px 14px; box-shadow:0 4px 14px rgba(0,0,0,.06);
+    }
+    .badge{
+      width:26px; height:26px; border-radius:50%;
+      display:grid; place-items:center; font-size:14px; font-weight:700; color:#000;
+      background:var(--yellow);
+    }
+
+    /* ===== VISUAL STEPS ===== */
+    .steps .cards{ display:grid; gap:16px; }
+    .card{ border-radius:20px; padding:20px; background:#fff; box-shadow:0 10px 30px rgba(0,0,0,.08); }
+    .card h3{ font-family:'League Spartan',sans-serif; font-weight:600; font-size:22px; margin:0 0 6px; }
+    .card p{ font-family:'Lato',sans-serif; font-size:16px; line-height:1.35; margin:0; }
+    .card .icon{ width:40px; height:40px; border-radius:50%; display:grid; place-items:center; margin-bottom:8px; }
+    .icon.y{ background:var(--yellow); }
+    .icon.o{ background:var(--orange); }
+    .icon.g{ background:var(--green); color:#fff; }
+    @media (min-width:900px){ .steps .cards{ grid-template-columns:repeat(4,1fr); } }
+
+    /* ===== EMAIL CTA ===== */
+    .cta{ background:#f3f6ef; }
+    .cta .panel{
+      background:#fff; border:1px solid rgba(0,0,0,.08); border-radius:18px;
+      padding:18px; box-shadow:0 10px 30px rgba(0,0,0,.08); display:grid; gap:12px;
+    }
+    .cta h3{ font-family:'League Spartan',sans-serif; font-size:26px; margin:0; }
+    .cta p{ font-family:'Lato',sans-serif; margin:0; }
+    .email-row{ display:flex; gap:8px; flex-wrap:wrap; }
+    .input{
+      flex:1; min-width:220px; padding:12px 14px; border-radius:12px;
+      border:1px solid rgba(0,0,0,.15); font-size:16px;
+    }
+    .submit{ padding:12px 16px; border:none; border-radius:12px; background:#111; color:#fff; font-weight:700; cursor:pointer; }
+
+    /* ===== EMBED ===== */
+    .embed .frame{
+      width:100%; height:520px; border:0; border-radius:16px; box-shadow:0 12px 34px rgba(0,0,0,.12);
+    }
+
+    /* ===== FOOTER NOTE ===== */
+    .footer-note{ padding:28px 16px; text-align:center; font-family:'Lato',sans-serif; font-size:14px; color:#444; }
   </style>
 </head>
 <body>
-  <!-- Header -->
-<header class="header">
-  <nav class="nav" aria-label="Main">
-    <!-- Logo only; links to homepage -->
-    <a href="https://alundsvagen.github.io/uppdittfrisor/" class="brand">
-      <img src="Logo.png" alt="Upp Ditt Frisör" />
-    </a>
 
-    <div class="actions">
-      <a class="btn primary" href="https://form.fillout.com/t/3LfmYbpYw1us" target="_blank" rel="noopener noreferrer">
-        Boka Möte
+  <!-- Header -->
+  <header class="header">
+    <nav class="nav" aria-label="Main">
+      <!-- Logo only; links to homepage -->
+      <a href="https://alundsvagen.github.io/uppdittfrisor/" class="brand">
+        <img src="Logo.png" alt="Upp Ditt Frisör" />
       </a>
 
-      <div class="menu" id="menu" aria-haspopup="true" aria-expanded="false">
-        <button class="menu-btn" id="menuBtn" aria-controls="menuList" aria-label="Open menu">
-          Menu
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-        <div class="menu-dropdown" role="menu" id="menuList">
-          <div class="menu-item" role="none">
-            <a role="menuitem" href="https://alundsvagen.github.io/uppdittfrisor/maps.html" target="_blank">Google Maps</a>
-          </div>
-          <div class="menu-item" role="none">
-            <a role="menuitem" href="https://www.google.com" target="_blank">Reviews</a>
-          </div>
-          <div class="menu-item" role="none">
-            <a role="menuitem" href="https://www.google.com" target="_blank">How it Works</a>
-          </div>
-          <div class="menu-item" role="none">
-            <a role="menuitem" href="https://www.google.com" target="_blank">Why</a>
+      <div class="actions">
+        <a class="btn primary" href="https://form.fillout.com/t/3LfmYbpYw1us" target="_blank" rel="noopener noreferrer">
+          Boka Möte
+        </a>
+
+        <div class="menu" id="menu" aria-haspopup="true" aria-expanded="false">
+          <button class="menu-btn" id="menuBtn" aria-controls="menuList" aria-label="Open menu">
+            Menu
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="menu-dropdown" role="menu" id="menuList">
+            <div class="menu-item" role="none">
+              <a role="menuitem" href="https://alundsvagen.github.io/uppdittfrisor/maps.html" target="_blank">Google Maps</a>
+            </div>
+            <div class="menu-item" role="none">
+              <a role="menuitem" href="https://www.google.com" target="_blank">Reviews</a>
+            </div>
+            <div class="menu-item" role="none">
+              <a role="menuitem" href="https://www.google.com" target="_blank">How it Works</a>
+            </div>
+            <div class="menu-item" role="none">
+              <a role="menuitem" href="https://www.google.com" target="_blank">Why</a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </nav>
-</header>
+    </nav>
+  </header>
 
   <!-- HERO (image splash) -->
   <section class="hero">
     <div class="hero-inner">
       <div>
         <span class="kicker">Sekundär landningssida • SEO & Google Maps</span>
-        <h1>Så får vi din frisörsalong att klättra i Google Maps</h1>
+        <h1>Så får vi din frisörsalong att klättra i Google Maps</h1>
         <p class="lead">Vi kombinerar lokal SEO, optimerad Google Business-profil och äkta omdömen för att ranka dig högre — så fler kunder hittar och bokar.</p>
         <div class="hero-cta">
           <a class="btn" href="#seo">Läs hur det funkar</a>
@@ -213,17 +279,17 @@
     </div>
   </section>
 
-  <!-- Email capture CTA (before full embed) -->
+  <!-- Email capture CTA -->
   <section id="cta" class="section cta">
     <div class="container">
       <div class="panel">
         <h3>Boka ett kort möte</h3>
-        <p>Fyll i din e‑post så skickar vi en kalenderlänk direkt.</p>
+        <p>Fyll i din e-post så skickar vi en kalenderlänk direkt.</p>
         <form id="emailForm" class="email-row" onsubmit="return goBook(event)">
-          <input class="input" type="email" id="email" name="email" placeholder="din@epost.se" required aria-label="Din e‑post" />
+          <input class="input" type="email" id="email" name="email" placeholder="din@epost.se" required aria-label="Din e-post" />
           <button class="submit" type="submit">Skicka mig länken</button>
         </form>
-        <small style="opacity:.8">Vi delar aldrig din e‑post.</small>
+        <small style="opacity:.8">Vi delar aldrig din e-post.</small>
       </div>
     </div>
   </section>

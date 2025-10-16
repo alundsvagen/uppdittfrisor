@@ -231,7 +231,7 @@
             <a role="menuitem" href="/uppdittfrisor/maps.html">Google Maps</a>
           </div>
           <div class="menu-item" role="none">
-            <a role="menuitem" href="/uppdittfrisor/reviews.html">Omdömen</a>
+            <a role="menuitem" href="/uppdittfrisor/review.html">Omdömen</a>
           </div>
           <div class="menu-item" role="none">
             <!-- If this page has a section id="hur", keep as #hur; otherwise link to a page -->
@@ -331,18 +331,35 @@
   </section>
 
   <script>
-    (function(){
-      const menu = document.getElementById('menu');
-      const btn = document.getElementById('menuBtn');
-      function openMenu(){ menu.setAttribute('aria-expanded','true'); }
-      function closeMenu(){ menu.setAttribute('aria-expanded','false'); }
-      function isOpen(){ return menu.getAttribute('aria-expanded')==='true'; }
-      if(btn){
-        btn.addEventListener('click', (e)=>{ e.stopPropagation(); isOpen()?closeMenu():openMenu(); });
-        document.addEventListener('click', (e)=>{ if(!menu.contains(e.target)) closeMenu(); });
-        document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeMenu(); });
-      }
-    })();
+  (function () {
+    const menu = document.getElementById('menu');
+    const btn  = document.getElementById('menuBtn');
+    const list = document.getElementById('menuList');
+
+    function openMenu(){ menu.setAttribute('aria-expanded', 'true'); }
+    function closeMenu(){ menu.setAttribute('aria-expanded', 'false'); }
+    function isOpen(){ return menu.getAttribute('aria-expanded') === 'true'; }
+
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      isOpen() ? closeMenu() : openMenu();
+    });
+
+    // Close when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!menu.contains(e.target)) closeMenu();
+    });
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
+    // NEW: close after choosing a menu item
+    list.addEventListener('click', (e) => {
+      if (e.target.closest('a')) closeMenu();
+    });
+  })();
+</script>
+
 
     // Redirect to Fillout with prefilled email query parameter
     function goBook(e){

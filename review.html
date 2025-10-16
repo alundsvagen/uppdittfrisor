@@ -295,5 +295,74 @@
   })();
 </script>
 
+    <!-- Email capture CTA -->
+  <section id="cta" class="section cta">
+    <div class="container">
+      <div class="panel">
+        <h3>Boka ett kort möte</h3>
+        <p>Fyll i din e-post så skickar vi en kalenderlänk direkt.</p>
+        <form id="emailForm" class="email-row" onsubmit="return goBook(event)">
+          <input class="input" type="email" id="email" name="email" placeholder="din@epost.se" required aria-label="Din e-post" />
+          <button class="submit" type="submit">Skicka mig länken</button>
+        </form>
+        <small style="opacity:.8">Vi delar aldrig din e-post.</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- Full booking form (later) -->
+  <section class="section embed">
+    <div class="container">
+      <h2 style="text-align:center">Eller boka direkt här</h2>
+      <div style="width:100%;height:520px" data-fillout-id="98r4TeWxeXus" data-fillout-embed-type="standard" data-fillout-inherit-parameters data-fillout-dynamic-resize class="frame"></div>
+      <script src="https://server.fillout.com/embed/v1/"></script>
+    </div>
+  </section>
+
+<script>
+  (function () {
+    const menu = document.getElementById('menu');
+    const btn  = document.getElementById('menuBtn');
+    const list = document.getElementById('menuList');
+
+    if (!menu || !btn || !list) return;
+
+    function openMenu() { menu.setAttribute('aria-expanded', 'true'); }
+    function closeMenu() { menu.setAttribute('aria-expanded', 'false'); }
+    function isOpen()   { return menu.getAttribute('aria-expanded') === 'true'; }
+
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      isOpen() ? closeMenu() : openMenu();
+    });
+
+    // Stäng när man klickar utanför
+    document.addEventListener('click', (e) => {
+      if (!menu.contains(e.target)) closeMenu();
+    });
+
+    // Stäng med Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
+
+    // Stäng efter att man valt en menylänk
+    list.addEventListener('click', (e) => {
+      if (e.target.closest('a')) closeMenu();
+    });
+  })();
+
+  // Skicka vidare till Fillout med förifylld e-post
+  function goBook(e) {
+    e.preventDefault();
+    const input = document.getElementById('email');
+    const email = input ? input.value.trim() : "";
+    const url = new URL('https://form.fillout.com/t/3LfmYbpYw1us');
+    if (email) url.searchParams.set('email', email);
+    window.location.href = url.toString();
+    return false;
+  }
+</script>
+
 </body>
 </html>

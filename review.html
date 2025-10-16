@@ -221,81 +221,7 @@
     </div>
   </section>
 
-  <!-- CTA (email first) -->
-  <section id="cta" class="section cta">
-    <div class="container">
-      <div class="panel">
-        <h3>Vill du få fler omdömen?</h3>
-        <p>Fyll i din e-post så skickar vi en kalenderlänk direkt.</p>
-        <form id="emailForm" class="email-row" onsubmit="return goBook(event)">
-          <input class="input" type="email" id="email" name="email" placeholder="din@epost.se" required aria-label="Din e-post" />
-          <button class="submit" type="submit">Skicka mig länken</button>
-        </form>
-        <small style="opacity:.8">Vi delar aldrig din e-post.</small>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER – Premium (same as before) -->
-  <section class="footer-premium" aria-labelledby="footerTitle">
-    <div class="container">
-      <div class="footer-col">
-        <div class="footer-brand">
-          <img src="Logo.png" alt="Upp Ditt Frisör – logotyp" />
-          <div class="brand-name" id="footerTitle">Upp Ditt Frisör</div>
-        </div>
-        <p style="margin-top:8px;font-family:'Lato',sans-serif;font-size:14px;opacity:.85;">Syns högre på Google Maps.</p>
-      </div>
-
-      <div class="footer-col">
-        <h4>Adress</h4>
-        <address>Magnus Ladulåsgatan, 118 65 Stockholm</address>
-      </div>
-
-      <div class="footer-col right">
-        <h4>Kontakt</h4>
-        <p><a href="tel:+46700254213" aria-label="Ring 070 025 42 13">070 025 42 13</a></p>
-        <p style="margin-top:10px;">
-          <a class="jobs-btn" href="https://form.fillout.com/t/14j9614fosus" target="_blank" rel="noopener noreferrer" aria-label="Sök jobb hos Upp Ditt Frisör">
-            <span>🚀</span> Sök jobb
-          </a>
-        </p>
-      </div>
-    </div>
-    <div class="footer-bottom">© 2025 Upp Ditt Frisör</div>
-  </section>
-
-<script>
-  (function () {
-    const menu = document.getElementById('menu');
-    const btn  = document.getElementById('menuBtn');
-    const list = document.getElementById('menuList');
-
-    function openMenu(){ menu.setAttribute('aria-expanded', 'true'); }
-    function closeMenu(){ menu.setAttribute('aria-expanded', 'false'); }
-    function isOpen(){ return menu.getAttribute('aria-expanded') === 'true'; }
-
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      isOpen() ? closeMenu() : openMenu();
-    });
-
-    // Close when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!menu.contains(e.target)) closeMenu();
-    });
-    // Close on Escape
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeMenu();
-    });
-    // NEW: close after choosing a menu item
-    list.addEventListener('click', (e) => {
-      if (e.target.closest('a')) closeMenu();
-    });
-  })();
-</script>
-
-    <!-- Email capture CTA -->
+      <!-- Email capture CTA -->
   <section id="cta" class="section cta">
     <div class="container">
       <div class="panel">
@@ -362,6 +288,66 @@
     window.location.href = url.toString();
     return false;
   }
+</script>
+  
+
+  <!-- FOOTER – Premium (same as before) -->
+  <section class="footer-premium" aria-labelledby="footerTitle">
+    <div class="container">
+      <div class="footer-col">
+        <div class="footer-brand">
+          <img src="Logo.png" alt="Upp Ditt Frisör – logotyp" />
+          <div class="brand-name" id="footerTitle">Upp Ditt Frisör</div>
+        </div>
+        <p style="margin-top:8px;font-family:'Lato',sans-serif;font-size:14px;opacity:.85;">Syns högre på Google Maps.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Adress</h4>
+        <address>Magnus Ladulåsgatan, 118 65 Stockholm</address>
+      </div>
+
+      <div class="footer-col right">
+        <h4>Kontakt</h4>
+        <p><a href="tel:+46700254213" aria-label="Ring 070 025 42 13">070 025 42 13</a></p>
+        <p style="margin-top:10px;">
+          <a class="jobs-btn" href="https://form.fillout.com/t/14j9614fosus" target="_blank" rel="noopener noreferrer" aria-label="Sök jobb hos Upp Ditt Frisör">
+            <span>🚀</span> Sök jobb
+          </a>
+        </p>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2025 Upp Ditt Frisör</div>
+  </section>
+
+<script>
+  (function () {
+    const menu = document.getElementById('menu');
+    const btn  = document.getElementById('menuBtn');
+    const list = document.getElementById('menuList');
+
+    function openMenu(){ menu.setAttribute('aria-expanded', 'true'); }
+    function closeMenu(){ menu.setAttribute('aria-expanded', 'false'); }
+    function isOpen(){ return menu.getAttribute('aria-expanded') === 'true'; }
+
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      isOpen() ? closeMenu() : openMenu();
+    });
+
+    // Close when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!menu.contains(e.target)) closeMenu();
+    });
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
+    // NEW: close after choosing a menu item
+    list.addEventListener('click', (e) => {
+      if (e.target.closest('a')) closeMenu();
+    });
+  })();
 </script>
 
 </body>

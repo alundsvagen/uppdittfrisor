@@ -23,57 +23,69 @@
     html,body{height:100%}
     body{margin:0;color:var(--text);background:var(--bg);font-family:ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"}
 
-    /* Header (green) */
-    .header{position:sticky;top:0;z-index:100;background:var(--green);box-shadow:0 2px 12px var(--ring)}
-    .nav{max-width:1100px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
-    .brand{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:#fff}
-    .brand img{height:40px;width:auto;display:block}
-
-    .actions{display:flex;align-items:center;gap:12px}
-    .btn, .menu-btn{appearance:none;border:none;border-radius:999px;padding:10px 16px;font-size:15px;line-height:1;cursor:pointer;transition:transform .04s ease, box-shadow .2s ease, background .2s ease, opacity .2s ease;box-shadow:0 1px 2px rgba(0,0,0,.05)}
-    .btn{background:#fff;color:#111}
-    .btn.primary{background:#111;color:#fff}
-    .menu{position:relative}
-    .menu-btn{display:inline-flex;align-items:center;gap:8px;background:#fff;color:#111}
-    .menu-btn svg{width:18px;height:18px}
-    .menu-dropdown{position:absolute;right:0;top:calc(100% + 10px);min-width:220px;background:#fff;border-radius:14px;padding:6px;box-shadow:0 10px 30px rgba(0,0,0,.12),0 2px 8px rgba(0,0,0,.06);display:none}
-    .menu[aria-expanded="true"] .menu-dropdown{display:block}
-    .menu-item a{display:block;padding:10px 12px;border-radius:10px;text-decoration:none;color:#111}
-    .menu-item a:hover{background:rgba(0,0,0,.05)}
-
-    /* HERO (green background + image splash) */
-    .hero{background:var(--green);color:#fff}
-    .hero-inner{max-width:1100px;margin:0 auto;padding:72px 16px;display:grid;gap:28px}
-    .kicker{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.15);backdrop-filter:blur(2px);font-family:'Poppins',sans-serif;font-size:12px}
-    .hero h1{font-family:'League Spartan',sans-serif;font-weight:700;font-size:clamp(28px,5vw,48px);line-height:1.05;margin:8px 0 10px}
-    .hero p.lead{font-family:'Lato',sans-serif;font-weight:500;font-size:clamp(16px,2.4vw,20px);line-height:1.45;margin:0}
-    .hero-cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
-    .hero-cta .btn{background:var(--brand)}
-
-    .splash{position:relative;width:min(540px,100%);justify-self:end}
-    .splash img{position:relative;z-index:2;width:100%;height:auto;display:block;border-radius:24px;box-shadow:0 18px 50px rgba(0,0,0,.25)}
-    .blob{position:absolute;border-radius:999px;opacity:.85;filter:blur(0)}
-    .blob.y{background:var(--yellow);width:64%;height:50%;left:-6%;top:10%;transform:rotate(-6deg);z-index:0}
-    .blob.o{background:var(--orange);width:46%;height:40%;right:-10%;top:-6%;transform:rotate(10deg);z-index:0}
-
-    @media(min-width:900px){.hero-inner{grid-template-columns:1.05fr .95fr;align-items:center}}
-
-    /* Trust bar */
-    .trust{background:#f8f9f6}
-    .trust .container{max-width:1100px;margin:0 auto;padding:18px 16px;text-align:center;font-family:'Lato',sans-serif;font-size:14px;color:#2a2a2a}
-
-    /* Explainer section */
-    .section{background:#fff}
-    .container{max-width:1100px;margin:0 auto;padding:56px 16px}
-    .section h2{font-family:'League Spartan',sans-serif;font-weight:700;font-size:clamp(24px,3.2vw,36px);margin:0 0 10px}
-    .section p.sub{font-family:'Lato',sans-serif;font-size:18px;color:#333;margin:0 0 24px}
-
-    .grid-2{display:grid;gap:22px}
-    @media(min-width:900px){.grid-2{grid-template-columns:1fr 1fr;align-items:start}}
-
-    .list{display:grid;gap:14px;margin:0;padding:0;list-style:none}
-    .list li{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:12px 14px;box-shadow:0 4px 14px rgba(0,0,0,.06)}
-    .badge{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:14px;font-weight:700;color:#000;background:var(--brand)}
+    /* Nav / Header (unchanged except tighter brand spacing + a11y focus) */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--brand);
+      box-shadow: 0 2px 12px var(--ring);
+    }
+    
+    .nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    
+    /* Logo link: no extra text, no gap needed */
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0;                 /* tighter since it's only the logo */
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    .brand img {
+      height: 40px;
+      width: auto;
+      display: block;
+    }
+    
+    /* Buttons / Menu (unchanged) */
+    .actions { display: flex; align-items: center; gap: 12px; }
+    .btn, .menu-btn {
+      appearance: none; border: none; border-radius: 999px; padding: 10px 16px;
+      font-size: 15px; line-height: 1; cursor: pointer;
+      transition: transform .04s ease, box-shadow .2s ease, background .2s ease, opacity .2s ease;
+      box-shadow: 0 1px 2px rgba(0,0,0,.05); color: #111; background: #fff;
+    }
+    .btn:hover, .menu-btn:hover { transform: translateY(-1px); }
+    .btn.primary { background: #111; color: #fff; }
+    
+    .menu { position: relative; }
+    .menu-btn { display: inline-flex; align-items: center; gap: 8px; }
+    .menu-btn svg { width: 18px; height: 18px; }
+    
+    .menu-dropdown {
+      position: absolute; right: 0; top: calc(100% + 10px); min-width: 220px;
+      background: #fff; border-radius: 14px; padding: 6px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.12), 0 2px 8px rgba(0,0,0,.06); display: none;
+    }
+    .menu[aria-expanded="true"] .menu-dropdown { display: block; }
+    .menu-item a { display: block; padding: 10px 12px; border-radius: 10px; text-decoration: none; color: #111; }
+    .menu-item a:hover { background: rgba(0,0,0,.05); }
+    
+    /* Nice focus outlines for keyboard users */
+    .brand:focus-visible, .btn:focus-visible, .menu-btn:focus-visible, .menu-item a:focus-visible {
+      outline: 3px solid #111;
+      outline-offset: 2px;
+    }
 
     /* SEO + Maps steps (visual cards) */
     .steps .cards{display:grid;gap:16px}
@@ -104,27 +116,43 @@
 </head>
 <body>
   <!-- Header -->
-  <header class="header">
-    <nav class="nav" aria-label="Huvudmeny">
-      <a class="brand" href="#">
-        <img src="Logo.png" alt="Upp Ditt Frisör" />
-        <span style="font-family:'League Spartan',sans-serif;font-weight:700;letter-spacing:.2px;">Upp Ditt Frisör</span>
+<header class="header">
+  <nav class="nav" aria-label="Main">
+    <!-- Logo only; links to homepage -->
+    <a href="https://alundsvagen.github.io/uppdittfrisor/" class="brand">
+      <img src="Logo.png" alt="Upp Ditt Frisör" />
+    </a>
+
+    <div class="actions">
+      <a class="btn primary" href="https://form.fillout.com/t/3LfmYbpYw1us" target="_blank" rel="noopener noreferrer">
+        Boka Möte
       </a>
-      <div class="actions">
-        <a class="btn" href="#cta">Boka möte</a>
-        <div class="menu" id="menu" aria-haspopup="true" aria-expanded="false">
-          <button class="menu-btn" id="menuBtn" aria-controls="menuList" aria-label="Öppna meny">Meny
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <div class="menu-dropdown" role="menu" id="menuList">
-            <div class="menu-item" role="none"><a role="menuitem" href="#hur" >Hur det fungerar</a></div>
-            <div class="menu-item" role="none"><a role="menuitem" href="#seo">SEO & Google Maps</a></div>
-            <div class="menu-item" role="none"><a role="menuitem" href="#cta">Boka möte</a></div>
+
+      <div class="menu" id="menu" aria-haspopup="true" aria-expanded="false">
+        <button class="menu-btn" id="menuBtn" aria-controls="menuList" aria-label="Open menu">
+          Menu
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="menu-dropdown" role="menu" id="menuList">
+          <div class="menu-item" role="none">
+            <a role="menuitem" href="https://alundsvagen.github.io/uppdittfrisor/maps.html" target="_blank">Google Maps</a>
+          </div>
+          <div class="menu-item" role="none">
+            <a role="menuitem" href="https://www.google.com" target="_blank">Reviews</a>
+          </div>
+          <div class="menu-item" role="none">
+            <a role="menuitem" href="https://www.google.com" target="_blank">How it Works</a>
+          </div>
+          <div class="menu-item" role="none">
+            <a role="menuitem" href="https://www.google.com" target="_blank">Why</a>
           </div>
         </div>
       </div>
-    </nav>
-  </header>
+    </div>
+  </nav>
+</header>
 
   <!-- HERO (image splash) -->
   <section class="hero">

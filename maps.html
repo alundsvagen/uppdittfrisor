@@ -1,1 +1,360 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" type="image/png" href="mapsicon.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Upp Ditt Frisör Sverige!</title>
+  <style>
+    :root {
+      --brand: #FFE45C;
+      --text: #000000;
+      --bg: #ffffff;
+      --ring: rgba(0,0,0,.08);
+      --orange: #FFBF7E;
+      --yellow: #FFE45C;
+      --green: #719941;
+    }
 
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--brand);
+      box-shadow: 0 2px 12px var(--ring);
+    }
+
+    .nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; }
+    .brand img { height: 40px; width: auto; display: block; }
+
+    .actions { display: flex; align-items: center; gap: 12px; }
+
+    .btn, .menu-btn {
+      appearance: none; border: none; border-radius: 999px; padding: 10px 16px; font-size: 15px; line-height: 1; cursor: pointer;
+      transition: transform .04s ease, box-shadow .2s ease, background .2s ease, opacity .2s ease;
+      box-shadow: 0 1px 2px rgba(0,0,0,.05); color: #111; background: #fff;
+    }
+    .btn:hover, .menu-btn:hover { transform: translateY(-1px); }
+    .btn.primary { background: #111; color: #fff; }
+
+    .menu { position: relative; }
+    .menu-btn { display: inline-flex; align-items: center; gap: 8px; }
+    .menu-btn svg { width: 18px; height: 18px; }
+
+    .menu-dropdown {
+      position: absolute; right: 0; top: calc(100% + 10px); min-width: 220px; background: #fff; border-radius: 14px; padding: 6px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.12), 0 2px 8px rgba(0,0,0,.06); display: none;
+    }
+    .menu[aria-expanded="true"] .menu-dropdown { display: block; }
+    .menu-item a { display: block; padding: 10px 12px; border-radius: 10px; text-decoration: none; color: #111; }
+    .menu-item a:hover { background: rgba(0,0,0,.05); }
+
+    /* HERO */
+    .hero { position: relative; background: var(--brand); text-align: center; padding: 120px 16px 120px; }
+    .hero h1 { font-family: 'League Spartan', sans-serif; font-weight: 600; font-size: 40px; line-height: 0.92; color: #000; max-width: 408px; margin: 0 auto 20px; }
+    .hero p { font-family: 'Lato', sans-serif; font-weight: 500; font-size: 25px; line-height: 1.26; color: #000; max-width: 395px; margin: 0 auto; }
+
+    /* SECTION: WHITE */
+    .section-white { background: #fff; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 56px 16px; }
+
+    .intro {
+      display: grid; justify-items: center; text-align: center; gap: 20px; margin-bottom: 40px;
+    }
+    .intro h2 { font-family: 'League Spartan', sans-serif; font-weight: 400; font-size: 35px; line-height: 1.19; color: #000; max-width: 383px; margin: 0 auto; }
+    .intro p { font-family: 'Lato', sans-serif; font-weight: 500; font-size: 22px; line-height: 1.26; color: #000; max-width: 403px; margin: 0 auto; }
+    .intro img { width: min(480px, 90%); height: auto; border-radius: 22px; box-shadow: 0 10px 30px rgba(0,0,0,.08); }
+
+    .pill { display: inline-flex; align-items: center; justify-content: center; padding: 6px 12px; border-radius: 999px; border: 1px solid #000; }
+    .pill span { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 12px; line-height: 1.11; color: #000; }
+
+    .section-title { text-align: center; font-family: 'League Spartan', sans-serif; font-weight: 600; font-size: 30px; line-height: 1.11; color: #000; margin: 14px auto 28px; max-width: 405px; }
+
+    .cards { display: grid; gap: 18px; }
+    .card { border-radius: 30px; padding: 24px; }
+    .card h3 { font-family: 'League Spartan', sans-serif; font-weight: 500; font-size: 25px; line-height: 1.28; margin: 0 0 10px; }
+    .card p { font-family: 'Poppins', sans-serif; font-weight: 500; font-size: 16px; line-height: 1.31; letter-spacing: .03em; margin: 0; }
+
+    .card.orange { background: var(--orange); }
+    .card.yellow { background: var(--yellow); }
+    .card.green { background: var(--green); }
+
+    .card.green h3, .card.green p { color: #fff; }
+
+    /* Responsive: 3-up on larger screens */
+    @media (min-width: 900px) {
+      .intro { grid-template-columns: 1fr 1fr; text-align: left; justify-items: start; align-items: center; }
+      .intro h2, .intro p { margin-left: 0; margin-right: 0; }
+      .intro > div.text { order: 1; }
+      .intro > img { order: 2; justify-self: end; }
+      .cards { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    /* Mobile font tweaks */
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 28px; }
+      .hero p { font-size: 18px; }
+      .intro h2 { font-size: 28px; }
+      .intro p { font-size: 18px; }
+      .section-title { font-size: 24px; }
+    }    /* ABOUT / WOW SPLASH */
+    .about-hero { background: #fff; }
+    .about-hero .container { display: grid; gap: 28px; align-items: center; }
+    .about-hero .text {
+      max-width: 620px;
+    }
+    .about-hero h2 { font-family: 'League Spartan', sans-serif; font-weight: 700; font-size: clamp(28px, 4vw, 44px); line-height: 1.05; margin: 0 0 10px; }
+    .about-hero p.lead { font-family: 'Lato', sans-serif; font-weight: 500; font-size: clamp(18px, 2.5vw, 22px); line-height: 1.35; margin: 0 0 14px; }
+
+    .about-hero .image-wrap { position: relative; width: min(560px, 100%); justify-self: end; }
+    .about-hero .image {
+      position: relative; z-index: 3; width: 100%; height: auto; display: block; border-radius: 24px; box-shadow: 0 18px 50px rgba(0,0,0,.15);
+    }
+    /* Splash blobs */
+    .blob { position: absolute; border-radius: 999px; filter: blur(0); opacity: .95; }
+    .blob.yellow { background: var(--yellow); }
+    .blob.orange { background: var(--orange); }
+    .blob.green { background: var(--green); }
+    .image-wrap .blob.yellow { width: 70%; height: 55%; left: -8%; top: 12%; transform: rotate(-6deg); z-index: 1; box-shadow: 0 20px 60px rgba(0,0,0,.12); }
+    .image-wrap .blob.orange { width: 48%; height: 42%; right: -10%; top: -6%; transform: rotate(12deg); z-index: 0; box-shadow: 0 12px 40px rgba(0,0,0,.10); }
+    .image-wrap .blob.green { width: 36%; height: 36%; right: -6%; bottom: -8%; transform: rotate(-8deg); z-index: 2; box-shadow: 0 12px 40px rgba(0,0,0,.12); }
+
+    /* Steps visual section */
+    .steps-visual { background: #fff; }
+    .steps-visual .section-title { margin-top: 0; }
+    .steps-grid { display: grid; gap: 18px; }
+    .step-card { position: relative; background: #fff; border-radius: 22px; padding: 18px 16px 18px 72px; box-shadow: 0 8px 24px rgba(0,0,0,.08); }
+    .step-icon { position: absolute; left: 16px; top: 16px; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; font-size: 22px; color: #000; }
+    .step-icon.y { background: var(--yellow); }
+    .step-icon.o { background: var(--orange); }
+    .step-icon.g { background: var(--green); color: #fff; }
+    .step-card h4 { margin: 0 0 6px; font-family: 'League Spartan', sans-serif; font-weight: 600; font-size: 20px; }
+    .step-card p { margin: 0; font-family: 'Lato', sans-serif; font-weight: 400; font-size: 16px; line-height: 1.35; }
+
+    /* Connectors for desktop */
+    @media (min-width: 900px) {
+      .about-hero .container { grid-template-columns: 1.1fr 0.9fr; }
+      .steps-grid { grid-template-columns: repeat(4, 1fr); align-items: start; }
+      .steps-grid { counter-reset: step; }
+      .step-card::after { content: ""; position: absolute; right: -9px; top: 50%; transform: translateY(-50%); width: 18px; height: 2px; background: rgba(0,0,0,.12); }
+      .steps-grid > :last-child::after { display: none; }
+    }
+        /* FOOTER – Premium */
+    .footer-premium { background: #fff; border-top: 6px solid var(--brand); }
+    .footer-premium .container { display: grid; grid-template-columns: 1fr; gap: 20px; padding: 36px 16px; }
+
+    .footer-brand { display: flex; align-items: center; gap: 12px; }
+    .footer-brand img { height: 40px; width: auto; display: block; border-radius: 10px; }
+    .footer-brand .brand-name { font-family: 'League Spartan', sans-serif; font-weight: 700; font-size: 20px; letter-spacing: 0.2px; }
+
+    .footer-col h4 { font-family: 'League Spartan', sans-serif; font-weight: 600; font-size: 16px; margin: 0 0 8px; }
+    .footer-col p, .footer-col address { font-family: 'Lato', sans-serif; font-size: 15px; margin: 0; }
+    .footer-col a { color: #000; text-decoration: none; border-bottom: 1px solid transparent; }
+    .footer-col a:hover { border-bottom-color: currentColor; }
+
+    .jobs-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: 999px; background: #111; color: #fff; text-decoration: none; font-family: 'Lato', sans-serif; font-weight: 600; font-size: 14px; box-shadow: 0 8px 22px rgba(0,0,0,.15); }
+    .jobs-btn:hover { transform: translateY(-1px); }
+
+    .footer-bottom { border-top: 1px solid rgba(0,0,0,.08); padding: 12px 16px 24px; text-align: center; font-family: 'Lato', sans-serif; font-size: 14px; }
+
+    @media (min-width: 900px) {
+      .footer-premium .container { grid-template-columns: 2fr 1fr 1fr; align-items: start; }
+      .footer-col.right { justify-self: end; text-align: right; }
+    }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <nav class="nav" aria-label="Main">
+      <a href="#" class="brand">
+        <img src="Logo.png" alt="Brand logo" />
+      </a>
+
+      <div class="actions">
+        <a class="btn primary" href="https://form.fillout.com/t/3LfmYbpYw1us" target="_blank" rel="noopener noreferrer">Boka Möte</a>
+        <div class="menu" id="menu" aria-haspopup="true" aria-expanded="false">
+          <button class="menu-btn" id="menuBtn" aria-controls="menuList" aria-label="Open menu">
+            Menu
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="menu-dropdown" role="menu" id="menuList">
+            <div class="menu-item" role="none"><a role="menuitem" href="https://www.google.com" target="_blank">Google Maps</a></div>
+            <div class="menu-item" role="none"><a role="menuitem" href="https://www.google.com" target="_blank">Reviews</a></div>
+            <div class="menu-item" role="none"><a role="menuitem" href="https://www.google.com" target="_blank">How it Works</a></div>
+            <div class="menu-item" role="none"><a role="menuitem" href="https://www.google.com" target="_blank">Why</a></div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Vi hjälper din salong att synas högt på Google Maps.</h1>
+    <p>Så att fler kunder hittar dig — och bokar tid hos dig. 89 % av kunderna väljer frisören baserat på ranking på Google Maps.</p>
+    <div style="width:100%;height:500px;" data-fillout-id="98r4TeWxeXus" data-fillout-embed-type="standard" data-fillout-inherit-parameters data-fillout-dynamic-resize></div><script src="https://server.fillout.com/embed/v1/"></script>
+  </section>
+
+    <!-- NEW WHITE SECTION -->
+  <section class="section-white">
+    <div class="container">
+      <div class="intro">
+        <div class="text">
+          <h2>De flesta kunder söker “frisör nära mig” på Google.</h2>
+          <p>Få din frisörsalong att rankas högre på Google Maps så får du fler bokningar, fler kunder och bättre resultat snabbare.</p>
+        </div>
+        <img src="PHONE.png" alt="Telefon som visar Google Maps" />
+      </div>
+
+      <div class="pill"><span>Vad du får</span></div>
+      <h3 class="section-title">Din frisörsalong högre upp på Google Maps</h3>
+
+      <div class="cards">
+        <!-- Card 1 -->
+        <article class="card orange">
+          <h3>Fler bokningar.</h3>
+          <p>När fler hittar dig, får du fler bokningar — enkelt!</p>
+        </article>
+        <!-- Card 2 -->
+        <article class="card yellow">
+          <h3>Bättre synlighet</h3>
+          <p>Vi gör så att din salong syns högre på Google Maps.</p>
+        </article>
+        <!-- Card 3 -->
+        <article class="card green">
+          <h3>Enkelt att följa resultat</h3>
+          <p>Du ser själv hur din salong klättrar upp på Google Maps.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      const menu = document.getElementById('menu');
+      const btn = document.getElementById('menuBtn');
+      const list = document.getElementById('menuList');
+
+      function openMenu() { menu.setAttribute('aria-expanded', 'true'); }
+      function closeMenu() { menu.setAttribute('aria-expanded', 'false'); }
+      function isOpen() { return menu.getAttribute('aria-expanded') === 'true'; }
+
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        isOpen() ? closeMenu() : openMenu();
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!menu.contains(e.target)) closeMenu();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeMenu();
+      });
+    })();
+  </script>
+
+    <!-- ABOUT HERO (image right, splash vibe) -->
+  <section class="about-hero section-white">
+    <div class="container">
+      <div class="text">
+        <h2>Om oss</h2>
+        <p class="lead">Vi är Upp ditt frisör, ett systerbolag till en marknadsföringsbyrå på Södermalm i Stockholm.</p>
+        <p class="lead">Vi har hjälpt många företag att växa online. Nu använder vi samma kunskap – men i enkla termer endast för Google Maps-ranking och med fokus på frisörsalonger.</p>
+        <p class="lead">Vi arbetar enkelt, hjälper dig steg för steg och ser till att du förstår allt. Vi anser att alla företagare bör synas på Google.</p>
+      </div>
+
+      <div class="image-wrap" aria-label="Omnily – systerbolaget">
+        <div class="blob yellow" aria-hidden="true"></div>
+        <div class="blob orange" aria-hidden="true"></div>
+        <img class="image" src="omnily.png" alt="Team från Omnily" />
+        <div class="blob green" aria-hidden="true"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEPS VISUAL (below about) -->
+  <section class="steps-visual section-white">
+    <div class="container">
+      <h3 class="section-title">Hur det fungerar</h3>
+      <div class="steps-grid">
+        <article class="step-card">
+          <div class="step-icon y" aria-hidden="true">🔎</div>
+          <h4>Vi tittar på din salong online</h4>
+          <p>Vi kollar hur din Google-profil ser ut idag.</p>
+        </article>
+        <article class="step-card">
+          <div class="step-icon o" aria-hidden="true">🧭</div>
+          <h4>Vi gör en plan</h4>
+          <p>Du får en enkel plan för hur din salong kan synas högre på Google Maps.</p>
+        </article>
+        <article class="step-card">
+          <div class="step-icon y" aria-hidden="true">🛠️</div>
+          <h4>Vi gör jobbet åt dig</h4>
+          <p>Vi hjälper dig med text, bilder och kundomdömen – så du slipper tänka på det.</p>
+        </article>
+        <article class="step-card">
+          <div class="step-icon g" aria-hidden="true">📈</div>
+          <h4>Du ser resultaten</h4>
+          <p>Din salong börjar synas mer — och får fler kunder!</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+   
+  <!-- FOOTER – Premium -->
+  <section class="footer-premium" aria-labelledby="footerTitle">
+    <div class="container">
+      <!-- Brand / Logo -->
+      <div class="footer-col">
+        <div class="footer-brand">
+          <img src="Logo.png" alt="Upp Ditt Frisör – logotyp" />
+          <div class="brand-name" id="footerTitle">Upp Ditt Frisör</div>
+        </div>
+        <p style="margin-top:8px; font-family:'Lato',sans-serif; font-size:14px; opacity:.85;">Syns högre på Google Maps.</p>
+      </div>
+
+      <!-- Address -->
+      <div class="footer-col">
+        <h4>Adress</h4>
+        <address>Magnus Ladulåsgatan, 118 65 Stockholm</address>
+      </div>
+
+      <!-- Phone / Jobs -->
+      <div class="footer-col right">
+        <h4>Kontakt</h4>
+        <p><a href="tel:+46700254213" aria-label="Ring 070 025 42 13">070 025 42 13</a></p>
+        <p style="margin-top:10px;">
+          <a class="jobs-btn" href="https://form.fillout.com/t/14j9614fosus" target="_blank" rel="noopener noreferrer" aria-label="Sök jobb hos Upp Ditt Frisör">
+            <span>🚀</span> Sök jobb
+          </a>
+        </p>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2025 Upp Ditt Frisör</div>
+  </section>
+  
+</body>
+</html>

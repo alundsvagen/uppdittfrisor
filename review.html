@@ -289,7 +289,51 @@
     return false;
   }
 </script>
-  
+
+  <script>
+  (function () {
+    const menu = document.getElementById('menu');
+    const btn  = document.getElementById('menuBtn');
+    const list = document.getElementById('menuList');
+
+    if (!menu || !btn || !list) return;
+
+    function openMenu() { menu.setAttribute('aria-expanded', 'true'); }
+    function closeMenu() { menu.setAttribute('aria-expanded', 'false'); }
+    function isOpen()   { return menu.getAttribute('aria-expanded') === 'true'; }
+
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      isOpen() ? closeMenu() : openMenu();
+    });
+
+    // Stäng när man klickar utanför
+    document.addEventListener('click', (e) => {
+      if (!menu.contains(e.target)) closeMenu();
+    });
+
+    // Stäng med Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
+
+    // Stäng efter att man valt en menylänk
+    list.addEventListener('click', (e) => {
+      if (e.target.closest('a')) closeMenu();
+    });
+  })();
+
+  // Skicka vidare till Fillout med förifylld e-post
+  function goBook(e) {
+    e.preventDefault();
+    const input = document.getElementById('email');
+    const email = input ? input.value.trim() : "";
+    const url = new URL('https://form.fillout.com/t/3LfmYbpYw1us');
+    if (email) url.searchParams.set('email', email);
+    window.location.href = url.toString();
+    return false;
+  }
+</script>
 
   <!-- FOOTER – Premium (same as before) -->
   <section class="footer-premium" aria-labelledby="footerTitle">
